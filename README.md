@@ -14,4 +14,4 @@ Main idea about the game:-
 9.) Before ending the event admin is required to generate outcome of the event by call generate fuction which uses Harmony vrf to produce random outcome.
 10.) Users with right guesses get twice the coins they invested and others loose their all invested coins.
 11.) Users can withdraw their coins(in form of Harmony One token) for the same rate that they bought them for, but their overall balance can't be less than 100 coins.
-12.)contract address = 0x54dDf26475C90d9F262bBa2c632497A799c68B5d deployed on harmony testnet (1666700000) network.
+12.)contract address = 0x4C71F4308e25f9c01e7558Bce1220DbE2e3A9f82 deployed on harmony testnet (1666700000) network.
