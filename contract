@@ -28,11 +28,16 @@ contract betting{
      receive() payable external{
         
      }
+     //event for winners
     event Winner(
     uint256 indexed _eventid,
      address indexed _address,
      uint256 _bid
     );
+
+
+
+    //Withdraw function to withdrow one token used to buy coins
     function withdraw(uint256 _amount) payable public returns(bool){
      require(balance[msg.sender]-_amount>=100);
      require(address(this).balance>=(_amount/rate)*1000000000000000000);
@@ -40,12 +45,20 @@ contract betting{
      payable(msg.sender).transfer((_amount*1000000000000000000)/rate);
      return true;
     }
+
+
+
+    //free coins for new users
     function FreeCoins() public returns(bool){
       require(msg.sender!=admin);
       require(allPlayers[msg.sender]==false);
       balance[msg.sender]+=100;
       return true;
   }
+
+
+
+      //admin can start new event only after previous has ended
     function startevent( uint256 _time) public onlyOwner returns (bool) {
         if (started) {
             revert("One betting is already in action");
@@ -60,7 +73,7 @@ contract betting{
     } 
 
 
-
+//harmony vrf function to produce random values
 function generateOutcome() public onlyOwner returns (bytes32 result) {
         require(started);
         if(outCome){
@@ -80,7 +93,7 @@ function generateOutcome() public onlyOwner returns (bytes32 result) {
     outCome=true;
   }
 
-  
+
     function enter(uint256 _choice,uint256 _amount) public {
         if(!started){
             revert("NO betting event right now");
@@ -149,8 +162,7 @@ function generateOutcome() public onlyOwner returns (bytes32 result) {
     }
 
 
-
-
+    //resets the players array, removes players from last game.
     function resetLottery() internal {
         players = new address payable[](0);
         started=false;
